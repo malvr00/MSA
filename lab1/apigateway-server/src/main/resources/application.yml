@@ -21,6 +21,6 @@ spring:
             - Path=/first-service/**
         - id: second-service
           uri: http://127.0.0.1:8082/
-          # /first-service/** ?? ? http://127.0.0.1:8081/ ??
+          # /second-service/** ?? ? http://127.0.0.1:8082/ ??
           predicates:
             - Path=/second-service/**
