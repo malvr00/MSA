@@ -2,7 +2,7 @@
 
 마이크로 서비스 아키텍쳐
 
-USE: Spring Cloud, Ntflix Eureka, Doker, Kafka ( 추가 예정 )
+USE: Spring Cloud, Ntflix Eureka, Doker, Kafka, Prometheus, Gragana
 
 # MSA 흐름도
 
