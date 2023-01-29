@@ -17,6 +17,6 @@ public class ResponseCatalog {
 
     private Integer stock;
 
-    private Date createAt;
+    private Date createdAt;
 
 }
