@@ -1,3 +1,3 @@
 # Instance (MicroService)
 
-- Eureka Discovery Client 사용
+- Eureka Discovery Client, JWT 사용 
