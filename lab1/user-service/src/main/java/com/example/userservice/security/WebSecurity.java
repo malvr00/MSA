@@ -53,7 +53,7 @@ public class WebSecurity {
 
     private Filter getAuthenticationFilter(AuthenticationManager authenticationManager) {
         AuthenticationFilter authenticationFilter = new AuthenticationFilter(authenticationManager);
-
+//        authenticationFilter.setFilterProcessesUrl("/api/login");
         return authenticationFilter;
     }
 
