@@ -13,6 +13,8 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
+import javax.servlet.Filter;
+
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
@@ -26,12 +28,15 @@ public class WebSecurity {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+
+        AuthenticationManager authenticationManager = getAuthenticationManager(http);
         http.csrf().disable();
 //        http.authorizeRequests().antMatchers("/users/**").permitAll();
         http.authorizeRequests().antMatchers("/**")
                 .hasIpAddress("192.168.0.25")  // <- IP 변경
                 .and()
-                .apply(new MyCustomDsl());
+                .authenticationManager(authenticationManager)
+                .addFilter(getAuthenticationFilter(authenticationManager));
 
         http.headers().frameOptions().disable();
         return http.build();
@@ -39,19 +44,15 @@ public class WebSecurity {
 
     // select pwd from users where email = ?
     // db_pwd(encrypted == input_pwd(encrypted)
-    @Bean
-    AuthenticationManager authenticationManager(AuthenticationManagerBuilder builder) throws Exception {
-        return (AuthenticationManager) builder.userDetailsService(userService).passwordEncoder(bCryptPasswordEncoder);
+    AuthenticationManager getAuthenticationManager(HttpSecurity http) throws Exception {
+        AuthenticationManagerBuilder builder = http.getSharedObject(AuthenticationManagerBuilder.class);
+        return builder.userDetailsService(userService).passwordEncoder(bCryptPasswordEncoder).and().build();
     }
 
-    public class MyCustomDsl extends AbstractHttpConfigurer<MyCustomDsl, HttpSecurity> {
-        @Override
-        public void configure(HttpSecurity http) throws Exception {
-            AuthenticationManager authenticationManager = http.getSharedObject(AuthenticationManager.class);
-            http
-                    .addFilter(new AuthenticationFilter(authenticationManager));
-        }
-    }
+    private Filter getAuthenticationFilter(AuthenticationManager authenticationManager) {
+        AuthenticationFilter authenticationFilter = new AuthenticationFilter(authenticationManager);
 
+        return authenticationFilter;
+    }
 
 }
