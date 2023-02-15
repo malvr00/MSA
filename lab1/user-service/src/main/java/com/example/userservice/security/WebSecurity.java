@@ -32,7 +32,9 @@ public class WebSecurity {
         AuthenticationManager authenticationManager = getAuthenticationManager(http);
         http.csrf().disable();
 //        http.authorizeRequests().antMatchers("/users/**").permitAll();
-        http.authorizeRequests().antMatchers("/**")
+        http.authorizeRequests()
+                .antMatchers("/error/**").permitAll()
+                .antMatchers("/**")
                 .hasIpAddress("192.168.0.25")  // <- IP 변경
                 .and()
                 .authenticationManager(authenticationManager)
