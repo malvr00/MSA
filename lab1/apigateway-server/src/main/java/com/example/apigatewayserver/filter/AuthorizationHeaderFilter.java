@@ -1,6 +1,8 @@
 package com.example.apigatewayserver.filter;
 
 import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.security.Keys;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory;
@@ -13,6 +15,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
+import java.security.Key;
+
 @Slf4j
 @Component
 public class AuthorizationHeaderFilter extends AbstractGatewayFilterFactory<AuthorizationHeaderFilter.Config> {
@@ -20,6 +24,7 @@ public class AuthorizationHeaderFilter extends AbstractGatewayFilterFactory<Auth
     Environment env;
 
     public AuthorizationHeaderFilter(Environment env){
+        super(Config.class);
         this.env = env;
     }
 
@@ -53,9 +58,10 @@ public class AuthorizationHeaderFilter extends AbstractGatewayFilterFactory<Auth
         boolean returnValue = true;
 
         String subject = null;
+        Key key = Keys.secretKeyFor(SignatureAlgorithm.HS512);
 
         try {
-            subject = Jwts.parserBuilder().setSigningKey(env.getProperty("token.secret"))
+            subject = Jwts.parserBuilder().setSigningKey(key)
                     .build()
                     .parseClaimsJws(jwt).getBody()
                     .getSubject();

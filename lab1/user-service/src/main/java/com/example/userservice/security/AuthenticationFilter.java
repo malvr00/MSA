@@ -61,13 +61,13 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
         String username = (((User)authResult.getPrincipal()).getUsername());
         UserDto userDetails = userService.getUserDetailsByEmail(username);
 
-        Key key = Keys.secretKeyFor(SignatureAlgorithm.HS512);
-
+//        byte[] keyBytes = Decoders.BASE64.decode(env.getProperty("token.secret"));
+//        Key key = Keys.hmacShaKeyFor(keyBytes);
         String token = Jwts.builder()
                 .setSubject(userDetails.getUserId())
                 .setExpiration(new Date(System.currentTimeMillis() +
                         Long.parseLong(env.getProperty("token.expiration_time"))))
-                .signWith(key)
+                .signWith(SignatureAlgorithm.HS512, env.getProperty("token.secret"))
                 .compact();
 
         response.addHeader("token", token);
