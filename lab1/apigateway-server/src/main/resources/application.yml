@@ -76,7 +76,3 @@ spring:
                 baseMessage: Logging Filter Hi~
                 preLogger: true
                 postLogger: true
-
-
-token:
-  secret: A7CAA960C4AC5D81336AF00778E4F6FE1EDE88F237D01E446B511FCE506E0C310C6BDB5C519DC0EC3D5E45828697EA6EC6828E233EB71E4B79864201370D5DD9
