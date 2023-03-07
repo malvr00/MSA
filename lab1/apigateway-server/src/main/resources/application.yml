@@ -42,6 +42,7 @@ spring:
             - Path=/user-service/**
             - Method=GET
           filters:
+            - AuthorizationHeaderFilter
             - RemoveRequestHeader=Cookie
             - RewritePath=/user-service/(?<segment>.*), /$\{segment}
         - id: catalog-service
