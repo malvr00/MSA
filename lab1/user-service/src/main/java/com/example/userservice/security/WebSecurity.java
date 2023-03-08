@@ -34,6 +34,7 @@ public class WebSecurity {
 //        http.authorizeRequests().antMatchers("/users/**").permitAll();
         http.authorizeRequests()
                 .antMatchers("/error/**").permitAll()
+                .antMatchers("/actuator/**").permitAll()
                 .antMatchers("/**")
                 .hasIpAddress("192.168.0.25")  // <- IP 변경
                 .and()
