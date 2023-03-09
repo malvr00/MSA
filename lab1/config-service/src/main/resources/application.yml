@@ -4,9 +4,13 @@ server:
 spring:
   application:
     name: config-service
+#  profiles:
+#    active: native
   cloud:
     config:
       server:
+#        native:
+#          search-locations: file://${user.home}/Desktop/study/msa/native-file-repo
         git:
           uri: https://github.com/malvr00/MSA-Config-Server.git
 #          private 일 경우
