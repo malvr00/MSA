@@ -9,7 +9,7 @@ spring:
     port: 5672
     username: guest
     password: guest
-  #  profiles:
+#    profiles:
 #    active: native
   cloud:
     config:
