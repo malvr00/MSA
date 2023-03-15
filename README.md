@@ -41,3 +41,11 @@ Windows에서 기동
 - 모든 명령어는 $KAFKA_HOME\bin\windows 폴더에 저장
 
 - .\bin\windows\zookeeper-server-start.bat  .\config\zookeeper.properties
+
+메시지 생산
+$KAFKA_HOME/bin/kafka-console-producer.sh --broker-list localhost:9092 --topic quickstart-events
+
+메시지 소비
+$KAFKA_HOME/bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic quickstart-events \
+
+ --from-beginning
