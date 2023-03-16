@@ -81,7 +81,7 @@ etc/kafka/connect-distributed.properties 파일 마지막에 아래 plugin 정�
 # Kafka Connect Source<br>
 <br/>
 Postman을 활용하여 등록하였음. <br/>
-등록: localhost:8083/connectors <br/>
+등록: localhost:8083/connectors <br/><br/>
 ```json
 {
     "name": "my-source-connect",
@@ -98,5 +98,3 @@ Postman을 활용하여 등록하였음. <br/>
     }
 }
 ```
-<br/>
-조회: localhost:8083/connectors/{name} 상태: localhost:8083/connectors/{name}/status
