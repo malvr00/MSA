@@ -49,3 +49,30 @@ $KAFKA_HOME/bin/kafka-console-producer.sh --broker-list localhost:9092 --topic q
 $KAFKA_HOME/bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic quickstart-events \<br/>
 <br/>
  --from-beginning<br/>
+
+# Kafka Connect<br/>
+Kafka Connect 설치<br/>
+curl -O http://packages.confluent.io/archive/5.5/confluent-community-5.5.2-2.12.tar.gz<br/>
+<br/>
+curl -O http://packages.confluent.io/archive/6.1/confluent-community-6.1.0.tar.gz<br/>
+<br/>
+tar xvf confluent-community-6.1.0.tar.gz<br/>
+<br/>
+cd  $KAFKA_CONNECT_HOME<br/>
+<br/>
+ <br/>
+<br/>
+Kafka Connect 실행<br/>
+./bin/connect-distributed ./etc/kafka/connect-distributed.properties<br/>
+<br/>
+ <br/>
+<br/>
+JDBC Connector 설치<br/>
+- https://docs.confluent.io/5.5.1/connect/kafka-connect-jdbc/index.html<br/>
+<br/>
+- confluentinc-kafka-connect-jdbc-10.0.1.zip <br/>
+<br/>
+ <br/>
+<br/>
+etc/kafka/connect-distributed.properties 파일 마지막에 아래 plugin 정보 추가<br/>
+- plugin.path=[confluentinc-kafka-connect-jdbc-10.0.1 폴더]<br/>
