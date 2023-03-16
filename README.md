@@ -83,18 +83,20 @@ etc/kafka/connect-distributed.properties 파일 마지막에 아래 plugin 정�
 Postman을 활용하여 등록하였음. <br/>
 등록: localhost:8083/connectors <br/><br/>
 ```json
-{
-    "name": "my-source-connect",
-    "config": {
-        "connector.class": "io.confluent.connect.jdbc.JdbcSourceConnector",
-        "connection.url": "jdbc:mariadb://localhost:3306/mydb",
-        "connection.user": "root",
-        "connection.password": <User password>,
-        "mode": "incrementing",
-        "incrementing.column.name":"id",
-        "table.whitelist": "mydb.users",
-        "topic.prefix": "my_topic_",
-        "tasks.max": 1
-    }
-}
+ {
+     "name": "my-source-connect",
+     "config": {
+         "connector.class": "io.confluent.connect.jdbc.JdbcSourceConnector",
+         "connection.url": "jdbc:mariadb://localhost:3306/mydb",
+         "connection.user": "root",
+         "connection.password": <User password>,
+         "mode": "incrementing",
+         "incrementing.column.name":"id",
+         "table.whitelist": "mydb.users",
+         "topic.prefix": "my_topic_",
+         "tasks.max": 1
+     }
+ }
 ```
+<br/>
+조회: localhost:8083/connectors/{name} 상태: localhost:8083/connectors/{name}/status
