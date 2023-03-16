@@ -10,7 +10,8 @@
 
 <img width="650" height="400" alt="스크린샷 2023-01-14 오후 6 48 26" src="https://user-images.githubusercontent.com/77275513/212466144-d6bc31ab-5ab1-4171-be20-13399f39cd19.png">
 
-
+---
+<br/>
 API Gateway Service Discovery가 중추 
 
 # Kafka
@@ -76,3 +77,29 @@ JDBC Connector 설치<br/>
 <br/>
 etc/kafka/connect-distributed.properties 파일 마지막에 아래 plugin 정보 추가<br/>
 - plugin.path=[confluentinc-kafka-connect-jdbc-10.0.1 폴더]<br/>
+
+# Kafka Connect Source<br>
+<br/>
+Postman을 활용하여 등록하였음. <br/>
+등록: localhost:8083/connectors <br/>
+```
+
+{
+    "name": "my-source-connect",
+    "config": {
+        "connector.class": "io.confluent.connect.jdbc.JdbcSourceConnector",
+        "connection.url": "jdbc:mariadb://localhost:3306/mydb",
+        "connection.user": "root",
+        "connection.password": <User password>,
+        "mode": "incrementing",
+        "incrementing.column.name":"id",
+        "table.whitelist": "mydb.users",
+        "topic.prefix": "my_topic_",
+        "tasks.max": 1
+    }
+}
+
+```
+<br/>
+<br/>
+조회: localhost:8083/connectors/{name} 상태: localhost:8083/connectors/{name}/status
