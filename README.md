@@ -15,7 +15,7 @@ API Gateway Service Discovery가 중추
 
 ---
 <br/>
-#Kafka
+# Kafka
 <br/>
 Kafka 홈페이지<br/>
 - http://kafka.apache.org
