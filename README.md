@@ -84,17 +84,21 @@ Postman을 활용하여 등록하였음. <br/>
 등록: localhost:8083/connectors
 
 ```json
-{
-  "username": "foo",
-  "product_list": [{
-    "url": "http://www.gsshop.com/prd/prd.gs?prdid=24926497",
-    "title": "[더망고] 필리핀 카라바오 망고 5kg 20과",
-    "price": 38900,
-    "shop": "GSSHOP",
-    "img": "http://image.gsshop.com/image/24/92/24926497_L1.jpg",
-    "timestamp": "1492327941"
-  }]
-}
+ {
+     "name": "my-source-connect",
+     "config": {
+         "connector.class": "io.confluent.connect.jdbc.JdbcSourceConnector",
+         "connection.url": "jdbc:mariadb://localhost:3306/mydb",
+         "connection.user": "root",
+         "connection.password": <User password>,
+         "mode": "incrementing",
+         "incrementing.column.name":"id",
+         "table.whitelist": "mydb.users",
+         "topic.prefix": "my_topic_",
+         "tasks.max": 1
+     }
+ }
 ```
+
 <br/>
 조회: localhost:8083/connectors/{name} 상태: localhost:8083/connectors/{name}/status
