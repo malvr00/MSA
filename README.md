@@ -83,6 +83,8 @@ etc/kafka/connect-distributed.properties 파일 마지막에 아래 plugin 정�
 
 # Kafka Connect Source<br>
 <br/>
+<img width="908" alt="스크린샷 2023-03-22 오후 6 44 24" src="https://user-images.githubusercontent.com/77275513/226864112-e24cac6f-9a55-4941-8d48-88ff31a723c0.png">
+<br/>
 Postman을 활용하여 등록하였음. <br/>
 등록: localhost:8083/connectors
 
