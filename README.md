@@ -94,7 +94,7 @@ Postman을 활용하여 등록하였음. <br/>
      "config": {
          "connector.class": "io.confluent.connect.jdbc.JdbcSourceConnector",
          "connection.url": "jdbc:mariadb://localhost:3306/mydb",
-         "connection.user": "root",
+         "connection.user": <User name>,
          "connection.password": <User password>,
          "mode": "incrementing",
          "incrementing.column.name":"id",
