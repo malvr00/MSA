@@ -107,3 +107,28 @@ Postman을 활용하여 등록하였음. <br/>
 
 <br/>
 조회: localhost:8083/connectors/{name} 상태: localhost:8083/connectors/{name}/status
+<br/>
+<br/>
+# Kafka Connect Sink<br/>
+등록: localhost:8083/connectors
+
+```json
+{
+
+  "name":"my-sink-connect",
+
+  "config":{
+    "connector.class":"io.confluent.connect.jdbc.JdbcSinkConnector",
+    "connection.url":"jdbc:mysql://localhost:3306/mydb",
+    "connection.user":"root",
+    "connection.password":"test1357",
+    "auto.create":"true",
+    "auto.evolve":"true",
+    "delete.enabled":"false",
+    "tasks.max":"1",
+    "topics":"my_topic_users"
+  }
+}
+```
+
+<br/>
