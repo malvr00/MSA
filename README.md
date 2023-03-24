@@ -109,6 +109,7 @@ Postman을 활용하여 등록하였음. <br/>
 조회: localhost:8083/connectors/{name} 상태: localhost:8083/connectors/{name}/status
 <br/>
 <br/>
+
 # Kafka Connect Sink<br/>
 등록: localhost:8083/connectors
 
