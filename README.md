@@ -121,8 +121,8 @@ Postman을 활용하여 등록하였음. <br/>
   "config":{
     "connector.class":"io.confluent.connect.jdbc.JdbcSinkConnector",
     "connection.url":"jdbc:mysql://localhost:3306/mydb",
-    "connection.user":"root",
-    "connection.password":"test1357",
+    "connection.user":<User name>,
+    "connection.password":<User password>,
     "auto.create":"true",
     "auto.evolve":"true",
     "delete.enabled":"false",
