@@ -36,7 +36,7 @@ public class WebSecurity {
                 .antMatchers("/error/**").permitAll()
                 .antMatchers("/actuator/**").permitAll()
                 .antMatchers("/**")
-                .hasIpAddress("192.168.0.25")  // <- IP 변경
+                .hasIpAddress("192.168.0.46")  // <- IP 변경
                 .and()
                 .authenticationManager(authenticationManager)
                 .addFilter(getAuthenticationFilter(authenticationManager));
@@ -46,7 +46,7 @@ public class WebSecurity {
     }
 
     // select pwd from users where email = ?
-    // db_pwd(encrypted == input_pwd(encrypted)
+    // db_pwd(encrypted) == input_pwd(encrypted)
     AuthenticationManager getAuthenticationManager(HttpSecurity http) throws Exception {
         AuthenticationManagerBuilder builder = http.getSharedObject(AuthenticationManagerBuilder.class);
         return builder.userDetailsService(userService).passwordEncoder(bCryptPasswordEncoder).and().build();
