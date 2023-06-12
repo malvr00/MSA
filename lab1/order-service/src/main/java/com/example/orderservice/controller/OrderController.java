@@ -8,6 +8,7 @@ import com.example.orderservice.service.OrderService;
 import com.example.orderservice.vo.RequestOrder;
 import com.example.orderservice.vo.ResponseOrder;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.core.env.Environment;
@@ -19,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+@Slf4j
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/order-service")
@@ -40,6 +42,7 @@ public class OrderController {
     @PostMapping("/{userId}/orders")
     public ResponseEntity<ResponseOrder> createOrder(@PathVariable String userId,
                                                      @RequestBody RequestOrder orderDetails) {
+        log.info("Before add orders data");
         ModelMapper modelMapper = new ModelMapper();
         modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 
@@ -59,12 +62,13 @@ public class OrderController {
 //        orderProducer.send("orders", orderDto);
 
         ResponseOrder responseUser = modelMapper.map(orderDto, ResponseOrder.class);
-
+        log.info("After add orders data");
         return ResponseEntity.status(HttpStatus.CREATED).body(responseUser);
     }
 
     @GetMapping("/{userId}/orders")
-    public ResponseEntity<List<ResponseOrder>> getOrder(@PathVariable("userId") String userId) {
+    public ResponseEntity<List<ResponseOrder>> getOrder(@PathVariable("userId") String userId) throws Exception{
+        log.info("Before retrieve orders data");
         Iterable<OrderEntity> orderList = orderService.getOrderByUserId(userId);
 
         List<ResponseOrder> result = new ArrayList<>();
@@ -72,6 +76,15 @@ public class OrderController {
         orderList.forEach(r -> {
             result.add(new ModelMapper().map(r, ResponseOrder.class));
         });
+
+        try {
+            Thread.sleep(1000);
+            throw new Exception("장애 발생 테스트");
+        } catch (InterruptedException ex) {
+            log.warn(ex.getMessage());
+        }
+
+        log.info("After retrieve orders data");
 
         return ResponseEntity.status(HttpStatus.OK).body(result);
     }
