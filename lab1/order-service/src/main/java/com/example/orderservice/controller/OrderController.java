@@ -47,16 +47,16 @@ public class OrderController {
         orderDto.setUserId(userId);
 
         /* JPA */
-//        OrderDto createdOrder = orderService.createOrder(orderDto);
+        OrderDto createdOrder = orderService.createOrder(orderDto);
 //        ResponseOrder responseUser = modelMapper.map(createdOrder, ResponseOrder.class);
 
         /* Kafka */
-        orderDto.setOrderId(UUID.randomUUID().toString());
-        orderDto.setTotalPrice(orderDetails.getQty() * orderDetails.getUnitPrice());
+//        orderDto.setOrderId(UUID.randomUUID().toString());
+//        orderDto.setTotalPrice(orderDetails.getQty() * orderDetails.getUnitPrice());
 
         /* send this order to the kafka */
-        kafkaProducer.send("example-catalog-topic", orderDto);
-        orderProducer.send("orders", orderDto);
+//        kafkaProducer.send("example-catalog-topic", orderDto);
+//        orderProducer.send("orders", orderDto);
 
         ResponseOrder responseUser = modelMapper.map(orderDto, ResponseOrder.class);
 
