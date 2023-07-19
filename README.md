@@ -1,5 +1,5 @@
 # MSA
-( 인프런 인강 ) {복습진행 중, readme 정리 대기}
+( 인프런 인강 )
 마이크로 서비스 아키텍쳐
 
 - USE: Spring Cloud, Config Server, Ntflix Eureka, JWT, Doker, Kafka, Prometheus, Gragana
