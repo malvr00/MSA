@@ -138,5 +138,5 @@ Postman을 활용하여 등록하였음. <br/>
 
 <br/>
 <br/>
-# 장애 처리와 Microservice 분산 추적 <br/>
+# 장애 처리와 Microservice 분산 추적<br/>
 Resilience4J, Zipkin 사용
