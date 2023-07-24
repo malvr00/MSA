@@ -137,5 +137,5 @@ Postman을 활용하여 등록하였음. <br/>
 집킨, 서킷브레이커 정리 추가예정
 <br/>
 
-# 장애 처리와 Microservice 분산 추적<br/>
-Resilience4J, Zipkin 사용
+# 장애 처리와 Microservice 분산 추적 외 기타<br/>
+Resilience4J, Zipkin, Prometheus, Grafana, Docker 사용
