@@ -138,4 +138,4 @@ Postman을 활용하여 등록하였음. <br/>
 <br/>
 
 # 장애 처리와 Microservice 분산 추적 외 기타<br/>
-Resilience4J, Zipkin, Prometheus, Grafana, Docker 사용
+Resilience4J, Zipkin, Prometheus, Grafana, Docker(이미지 추후 추가) 사용 
