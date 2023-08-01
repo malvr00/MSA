@@ -6,6 +6,7 @@ spring:
     name: config-service
   rabbitmq:
     host: 127.0.0.1
+#    host: 172.18.0.2   직접 도커 주소 사용도 가능 하지만 IP 변경 가능성이 있을 경우 위험. 도커 실행 시 host 직접 설정
     port: 5672
     username: guest
     password: guest
