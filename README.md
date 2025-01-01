@@ -9,7 +9,6 @@
 
 <img width="650" height="400" alt="스크린샷 2023-01-14 오후 6 48 26" src="https://user-images.githubusercontent.com/77275513/212466144-d6bc31ab-5ab1-4171-be20-13399f39cd19.png">
 
-<br/>
 ### 기본 설명
 MicroService Architecture는 크게 Inner Architecture와 Outer Architecture로 구분할 수 있습니다. 위 그림에서 남색 부분은 Inner Architecture의 영역이고, 회색 부분은 Outer Architecture 부분입니다.
 - Inner architecture는 내부 서비스와 관련된 architecture입니다. 쉽게 말해, 내부의 서비스를 어떻게 잘 쪼개는지에 대한 설계입니다.
