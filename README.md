@@ -1,7 +1,7 @@
 # MSA
 마이크로 서비스 아키텍쳐 (노트내용 정리 작업 진행 중)
 
-- USE: Spring Cloud, Config Server, Ntflix Eureka, JWT, Doker, Kafka, Prometheus, Gragana
+- USE: Spring Cloud, Config Server, Ntflix Eureka, JWT, Docker, Kafka, Prometheus, grafana
 
 # MSA 흐름도
 
@@ -10,126 +10,17 @@
 <img width="650" height="400" alt="스크린샷 2023-01-14 오후 6 48 26" src="https://user-images.githubusercontent.com/77275513/212466144-d6bc31ab-5ab1-4171-be20-13399f39cd19.png">
 
 <br/>
-API Gateway Service Discovery가 중추
+### 기본 설명
+MicroService Architecture는 크게 Inner Architecture와 Outer Architecture로 구분할 수 있습니다. 위 그림에서 남색 부분은 Inner Architecture의 영역이고, 회색 부분은 Outer Architecture 부분입니다.
+- Inner architecture는 내부 서비스와 관련된 architecture입니다. 쉽게 말해, 내부의 서비스를 어떻게 잘 쪼개는지에 대한 설계입니다.
+ - 서비스를 어떻게 정의할 것인가?
+  - 주문 플랫폼에서 주문하기, 찜하기 등 같은 서비스로 넣을지, 다른 서비스로 분리할 것인지는 비즈니스나 시스템의 특성에 따라 정의되어야 합니다. 
+  - 서비스를 정의하기 위해 고려해야할 사항은 비즈니스 뿐만 아니라, 서비스 간의 종ㅅ곡성, 배포 용이성, 장애 대응 등 굉장히 많습니다.
+ - DB 접근 구조를 어떻게 설계할 것인가?
+  - 일반적으로 MicroService는 API를 통해서 접근합니다. 또한 각 MicroService에는 자체의 데이터베이스도 가질 수 있는데, 일부 비즈니스 트랙잭션은 여러 MicroService를 걸쳐 있기 때문에, 각 서비스에 연결된 데이터베이스의 정합성을 보장할 방안이 필요합니다.
+- Outer architecture
+ - 참조 그림에서와 같이 MSA의 Outer architecture을 총 6개의 영역으로 분류하고 있습니다.
 
----
-<br/>
-
-# Kafka
-
-<br/>
-Kafka 홈페이지<br/>
-- http://kafka.apache.org
-<br/><br/>
-Kafka와 데이터를 주고받기 위해 사용하는 Java Library<br/>
-- https://mvnrepository.com/artifact/org.apache.kafka/kafka-clients<br/>
-<br/>
-Zookeeper 및 Kafka 서버 기동<br/>
-$KAFKA_HOME/bin/zookeeper-server-start.sh  $KAFKA_HOME/config/zookeeper.properties<br/>
-<br/>
-$KAFKA_HOME/bin/kafka-server-start.sh  $KAFKA_HOME/config/server.properties<br/>
-<br/>
-Topic 생성<br/>
-$KAFKA_HOME/bin/kafka-topics.sh --create --topic quickstart-events --bootstrap-server localhost:9092 \<br/>
-<br/>
---partitions 1<br/>
-<br/>
-Topic 목록 확인<br/>
-$KAFKA_HOME/bin/kafka-topics.sh --bootstrap-server localhost:9092 --list<br/>
-<br/>
-Topic 정보 확인<br/>
-$KAFKA_HOME/bin/kafka-topics.sh --describe --topic quickstart-events --bootstrap-server localhost:9092<br/>
-<br/>
-Windows에서 기동<br/>
-- 모든 명령어는 $KAFKA_HOME\bin\windows 폴더에 저장<br/>
-<br/>
-- .\bin\windows\zookeeper-server-start.bat  .\config\zookeeper.properties<br/>
-<br/>
-메시지 생산<br/>
-$KAFKA_HOME/bin/kafka-console-producer.sh --broker-list localhost:9092 --topic quickstart-events<br/>
-<br/>
-메시지 소비<br/>
-$KAFKA_HOME/bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic quickstart-events \<br/>
-<br/>
- --from-beginning<br/>
-
-# Kafka Connect<br/>
-Kafka Connect 설치<br/>
-curl -O http://packages.confluent.io/archive/5.5/confluent-community-5.5.2-2.12.tar.gz<br/>
-<br/>
-curl -O http://packages.confluent.io/archive/6.1/confluent-community-6.1.0.tar.gz<br/>
-<br/>
-tar xvf confluent-community-6.1.0.tar.gz<br/>
-<br/>
-cd  $KAFKA_CONNECT_HOME<br/>
-<br/>
- <br/>
-<br/>
-Kafka Connect 실행<br/>
-./bin/connect-distributed ./etc/kafka/connect-distributed.properties<br/>
-<br/>
- <br/>
-<br/>
-JDBC Connector 설치<br/>
-- https://docs.confluent.io/5.5.1/connect/kafka-connect-jdbc/index.html<br/>
-<br/>
-- confluentinc-kafka-connect-jdbc-10.0.1.zip <br/>
-<br/>
- <br/>
-<br/>
-etc/kafka/connect-distributed.properties 파일 마지막에 아래 plugin 정보 추가<br/>
-- plugin.path=[confluentinc-kafka-connect-jdbc-10.0.1 폴더]<br/>
-
-# Kafka Connect Source<br>
-<br/>
-<img width="908" alt="스크린샷 2023-03-22 오후 6 44 24" src="https://user-images.githubusercontent.com/77275513/226864112-e24cac6f-9a55-4941-8d48-88ff31a723c0.png">
-<br/>
-Postman을 활용하여 등록하였음. <br/>
-등록: localhost:8083/connectors
-
-```json
- {
-     "name": "my-source-connect",
-     "config": {
-         "connector.class": "io.confluent.connect.jdbc.JdbcSourceConnector",
-         "connection.url": "jdbc:mariadb://localhost:3306/mydb",
-         "connection.user": <User name>,
-         "connection.password": <User password>,
-         "mode": "incrementing",
-         "incrementing.column.name":"id",
-         "table.whitelist": "mydb.users",
-         "topic.prefix": "my_topic_",
-         "tasks.max": 1
-     }
- }
-```
-
-<br/>
-조회: localhost:8083/connectors/{name} 상태: localhost:8083/connectors/{name}/status
-<br/>
-<br/>
-
-# Kafka Connect Sink<br/>
-등록: localhost:8083/connectors
-
-```json
-{
-
-  "name":"my-sink-connect",
-
-  "config":{
-    "connector.class":"io.confluent.connect.jdbc.JdbcSinkConnector",
-    "connection.url":"jdbc:mysql://localhost:3306/mydb",
-    "connection.user":<User name>,
-    "connection.password":<User password>,
-    "auto.create":"true",
-    "auto.evolve":"true",
-    "delete.enabled":"false",
-    "tasks.max":"1",
-    "topics":"my_topic_users"
-  }
-}
-```
 <br/>
 
 # 장애 처리와 Microservice 분산 추적 외 기타<br/>
