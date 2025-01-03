@@ -5,8 +5,6 @@
 
 # MSA 흐름도
 
-- 참조 : https://velog.io/@tedigom/MSA-%EC%A0%9C%EB%8C%80%EB%A1%9C-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0-1-MSA%EC%9D%98-%EA%B8%B0%EB%B3%B8-%EA%B0%9C%EB%85%90-3sk28yrv0e
-
 <img width="650" height="400" alt="스크린샷 2023-01-14 오후 6 48 26" src="https://user-images.githubusercontent.com/77275513/212466144-d6bc31ab-5ab1-4171-be20-13399f39cd19.png">
 
 ### 기본 설명
@@ -20,10 +18,29 @@ MicroService Architecture는 크게 Inner Architecture와 Outer Architecture로 
 - Outer architecture
   - 참조 그림에서와 같이 MSA의 Outer architecture을 총 6개의 영역으로 분류하고 있습니다.
 
-### External Gateway
-External Gateway는 전체 서비스 외부로부터 들어오는 접근을 내부 구조를 드러내지 않고 처리하기 위한 요소입니다. **사용자 인증(Consumer Identity Provider)과 권한 정책관리(policy management)**를 수행하며, `API Gateway`가 여기서 가장 핵심적인 역할을 담당합니다.
+### Container Management
+컨테이너 기반 어플리케이션 운영은 유연성과 자율성을 가지며, 개발자가 손쉽게 접근 및 운영할 수 있는 인프라 관리 기술이기 때문에 MSA에 적합하다고 평가받고 있습니다.<br/>
+대표적인 컨테이너 관리 환경인 Kubernetes가 Container management에 많이 사용되고 있습니다.<br/>
 
-<br/>
+### Backing Service
+Backing Service는 어플리케이션이 실행되는 가운데 네트워크를 통해서 사용할 수 있는 모든 서비스를 말하며, My SQL과 같은 데이터베이스, 캐쉬 시스템 등 포괄적인 개념입니다.
+
+### External Gateway
+External Gateway는 전체 서비스 외부로부터 들어오는 접근을 내부 구조를 드러내지 않고 처리하기 위한 요소입니다. **사용자 인증(Consumer Identity Provider)과 권한 정책관리(policy management)** 를 수행하며, `API Gateway`가 여기서 가장 핵심적인 역할을 담당합니다.
+- 프로젝트 
+  - Spring Cloud Gateway [[이동]](https://github.com/malvr00/MSA/tree/master/lab1/apigateway-server)  
+
+### Service Mesh
+Service Mesh는 마이크로서비스 구성 요소간의 네트워크를 제어하는 역할을 합니다. 서비스 간에 통신을 하기 위해서는 service discovery, service routing, 트래픽 관리 및 보안 등을 담당하는 요소가 있어야 합니다.<br/>
+더 나아가 **서비스 간 통신을 보다 안전하고 효율적으로 관리하는 네트워크 계층** 입니다.
+- 주요기능
+  - 트래픽 관리: 라우팅, A/B 테스트, Canary 배포 가능
+  - 보안: 서비스 간 TLS 암호화, 인증, 인가
+  - 모니터링 및 로깅: 서비스 간 호출 추적, 메트릭 수집
+  - 자동 리트라이 및 서킷 브레이커: 장애 발생 시 자동 복구
+- 프로젝트
+  - Reverse Proxy + Routing [[이동]](https://github.com/malvr00/MSA/tree/master/lab1/apigateway-server)
+  - Service Discovery + Load Balancing [[이동]](https://github.com/malvr00/MSA/tree/master/lab1/discoveryservice)
 
 # 장애 처리와 Microservice 분산 추적 외 기타<br/>
 Resilience4J, Zipkin, Prometheus, Grafana
