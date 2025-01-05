@@ -53,7 +53,7 @@
   - Kafka Producer [[이동]](https://github.com/malvr00/MSA/tree/master/lab1/order-service/src/main/java/com/example/orderservice/messagequeue)
   - Kafka Consumer [[이동]](https://github.com/malvr00/MSA/tree/master/lab1/catalog-service/src/main/java/com/example/catalogservice/messagequeue)
 
-# 장애 처리와 Microservice 분산 추적 외 기타<br/>
+## 장애 처리와 Microservice 분산 추적 외 기타<br/>
 Resilience4J, Zipkin, Prometheus, Grafana
 
 
