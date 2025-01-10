@@ -111,3 +111,11 @@ Resilience4J, Zipkin, Prometheus, Grafana
     - Grafana는 Prometheus 외에도 InfluxDB, Elasticsearch, MySQL 등 다양한 데이터 소스를 지원하여 여러 시스템의 메트릭을 한 곳에서 시각화할 수 있습니다.
   - 플러그인 및 커스터마이징
     - Grafana는 다양한 플러그인 및 커스터마이징을 지원해, 필요에 따라 대시보드를 수정하거나 추가 기능을 사용할 수 있습니다.
+
+### 요약
+Resilience4J: 장애 발생 시 시스템을 보호하고 안정성을 높이는 라이브러리 (서킷 브레이커, 재시도 등)<br/>
+Zipkin: 분산 시스템의 요청 흐름과 성능을 추적하는 도구 (분산 추적)<br/>
+Prometheus: 애플리케이션 및 시스템 메트릭을 수집하고 모니터링하는 도구 (시계열 데이터 기반)<br/>
+Grafana: Prometheus와 같은 도구의 데이터를 시각화하고 대시보드로 모니터링하는 도구<br/>
+
+
