@@ -53,7 +53,7 @@
   - Kafka Producer [[이동]](https://github.com/malvr00/MSA/tree/master/lab1/order-service/src/main/java/com/example/orderservice/messagequeue)
   - Kafka Consumer [[이동]](https://github.com/malvr00/MSA/tree/master/lab1/catalog-service/src/main/java/com/example/catalogservice/messagequeue)
   
-  ### Telemetry
+### Telemetry
   - 설명
     - MSA에서는 상당수의 마이크로서비스가 분산환경에서 운영되기 때문에 서비스들의 상태를 일일이 모니터링하고, 이슈에 대응 하는 것은 굉장히 힘들고 오랜 시간이 걸립니다. Telemetry는 서비스들을 모니터링하고, 서비스별로 발생하는 이슈들에 대응할 수 있도록 환경을 구성하는 역할을 합니다.
 
