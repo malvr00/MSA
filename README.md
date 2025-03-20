@@ -139,9 +139,4 @@ Postman을 활용하여 등록하였음. <br/>
 # 장애 처리와 Microservice 분산 추적 외 기타<br/>
 Resilience4J, Zipkin, Prometheus, Grafana
 
-<br />
-
-# Docker 명령어
-<br />
-Docker 명령어
 
