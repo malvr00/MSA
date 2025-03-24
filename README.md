@@ -1,5 +1,5 @@
 # MSA
-마이크로 서비스 아키텍쳐 (노트정리 작업 진행 중)
+마이크로 서비스 아키텍쳐 (노트내용 정리 작업 진행 중)
 
 - USE: Spring Cloud, Config Server, Ntflix Eureka, JWT, Doker, Kafka, Prometheus, Gragana
 
