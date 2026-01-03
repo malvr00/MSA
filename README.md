@@ -1,5 +1,5 @@
 # MSA
-마이크로 서비스 아키텍쳐 (노트내용 간단정리)
+마이크로 서비스 아키텍쳐 토이프로젝트 (노트내용 정리)
 
 - USE: Spring Cloud, Config Server, Ntflix Eureka, JWT, Docker, Kafka, Prometheus, grafana
 
